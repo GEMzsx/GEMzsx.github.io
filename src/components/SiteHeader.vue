@@ -52,7 +52,7 @@ const updatedText = () =>
         <span
           class="grid size-8 place-items-center rounded-lg bg-gradient-to-br from-brand-500 to-aqua-400 text-sm text-white"
         >
-          F
+          G
         </span>
         <span class="hidden text-base sm:inline">{{ siteConfig.siteName }}</span>
       </a>
