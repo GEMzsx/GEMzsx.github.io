@@ -1,0 +1,157 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink-950: #070a12;
+  --color-ink-900: #0b0f19;
+  --color-ink-850: #0f1420;
+  --color-ink-800: #141a28;
+  --color-ink-700: #1e2637;
+  --color-ink-600: #2a3446;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-aqua-400: #22d3ee;
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ink-900 text-slate-200 font-sans antialiased;
+    /* 背景光晕，纯 CSS 无额外请求 */
+    background-image:
+      radial-gradient(60rem 40rem at 15% -10%, rgba(99, 102, 241, 0.16), transparent 60%),
+      radial-gradient(50rem 35rem at 90% 0%, rgba(34, 211, 238, 0.1), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: rgba(99, 102, 241, 0.35);
+  }
+
+  /* 细滚动条 */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink-600);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3b475d;
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  /* 玻璃卡片 */
+  .card {
+    @apply rounded-2xl border border-white/8 bg-white/4 backdrop-blur-sm;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/45 hover:bg-white/7;
+    @apply hover:shadow-[0_18px_40px_-18px_rgba(99,102,241,0.55)];
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5
+           px-3 py-1 text-xs font-medium text-slate-300;
+  }
+
+  /* Tailwind v4 的 @apply 不能引用自定义类，故三个类共享一份基础声明 */
+  .btn,
+  .btn-primary,
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm
+           font-semibold transition-all duration-200 focus:outline-none
+           focus-visible:ring-2 focus-visible:ring-brand-400/70;
+  }
+
+  .btn-primary {
+    @apply bg-brand-500 text-white hover:bg-brand-600 active:scale-[0.98];
+    @apply shadow-[0_10px_30px_-12px_rgba(99,102,241,0.9)];
+  }
+
+  .btn-ghost {
+    @apply border border-white/12 bg-white/5 text-slate-200 hover:bg-white/10 active:scale-[0.98];
+  }
+
+  .section-title {
+    @apply text-2xl font-bold tracking-tight text-white sm:text-3xl;
+  }
+
+  .link {
+    @apply text-brand-400 underline-offset-4 transition-colors hover:text-aqua-400 hover:underline;
+  }
+}
+
+@layer utilities {
+  /* 滚动淡入：由 v-reveal 指令切换 .is-revealed */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 25%,
+      rgba(255, 255, 255, 0.1) 37%,
+      rgba(255, 255, 255, 0.04) 63%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.4s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0 50%;
+    }
+  }
+}
+
+/* 尊重用户的「减少动态效果」系统设置 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .shimmer {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
