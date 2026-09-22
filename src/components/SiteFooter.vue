@@ -15,7 +15,7 @@ const githubUrl = `https://github.com/${siteConfig.githubUsername}`
             <span
               class="grid size-7 place-items-center rounded-lg bg-gradient-to-br from-brand-500 to-aqua-400 text-xs text-white"
             >
-              F
+              G
             </span>
             {{ siteConfig.siteName }}
           </p>
