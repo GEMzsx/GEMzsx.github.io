@@ -7,7 +7,7 @@
   </defs>
   <rect width="64" height="64" rx="16" fill="url(#g)" />
   <path
-    d="M20 44V21.5A2.5 2.5 0 0 1 22.5 19H42v6H27.5v5.5H39v6H27.5V44z"
-    fill="#fff"
-  />
+  d="M42 24a14 14 0 1 0 0 16v-6h-8v-4h12v10a18 18 0 1 1 0-20z"
+  fill="#fff"
+/>
 </svg>
