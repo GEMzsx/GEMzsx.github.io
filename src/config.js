@@ -13,7 +13,7 @@ export const siteConfig = {
   siteName: 'GEMzsxwork.',
 
   /** 首屏一句话介绍。留空则回退到 GitHub 的 bio */
-  tagline: '持续学习中，用代码把想法变成看得见的东西',
+  tagline: '电路是骨架，代码是灵魂，把想法点亮',
 
   /** 自定义技术标签，显示在首屏与「关于」区块 */
   techStack: [
